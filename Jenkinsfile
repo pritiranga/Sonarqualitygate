@@ -10,6 +10,8 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv(credentialsId: 'SonarQubeScanner', installationName: 'SonarQubeScanner') {
+                    sh 'chmod +x gradlew
+'
                     sh './gradlew sonarqube \
                         -Dsonar.projectKey=Sonarqube-QG \
                         -Dsonar.host.url=http://192.168.6.99:9000 \
