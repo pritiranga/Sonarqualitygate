@@ -10,7 +10,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv(credentialsId: 'SonarQubeScanner', installationName: 'SonarQubeScanner') {
-                    sh 'chmod +x gradlew
+                    sh 'chmod +x gradlew'
 '
                     sh './gradlew sonarqube \
                         -Dsonar.projectKey=Sonarqube-QG \
