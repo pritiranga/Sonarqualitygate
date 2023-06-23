@@ -22,27 +22,15 @@ pipeline {
 
 
           stage("Quality Gate"){
-          timeout(time: 1, unit: 'HOURS') {
-              def qg = waitForQualityGate()
-              if (qg.status != 'OK') {
-                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
-
+              steps{
+                  timeout(time: 1, unit: 'HOURS') {
+                      def qg = waitForQualityGate()
+                      if (qg.status != 'OK') {
+                      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                  }
               }
           }
-      }
+        }
 
-
-        /*stage('Build and Test') {
-            steps {
-                script {
-                    // Run your unit tests here
-                    junit(testResults: 'build/test-results/test/*.xml', allowEmptyResults: true, skipPublishingChecks: true)
-                    def testResult = sh(returnStatus: true, script: './gradlew test')
-                    if (testResult != 0) {
-                        error('Unit tests failed. Failing the build.')
-                    }
-                }
-            }
-        } */
     }
 }
