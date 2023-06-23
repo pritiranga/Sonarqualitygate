@@ -18,12 +18,11 @@ pipeline {
                 } 
             } 
         } 
-
-sleep 10
         
 stage("Quality Gate") {
     steps {
         script {
+            sleep 10
             timeout(time: 10, unit: 'MINUTES') {
                 def qg = waitForQualityGate()
                 if (qg.status != 'OK') {
