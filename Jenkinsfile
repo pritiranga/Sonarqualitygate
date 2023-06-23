@@ -19,21 +19,13 @@ pipeline {
             } 
         } 
 
-            stage("Quality Gate") {
-                steps {
-                    timeout(time: 1, unit: 'HOURS') {
-                        script {
-                            def analysis = waitForQualityGate()
-                            def sonarTaskId = analysis.getId()
-                            def sonarURL ='http://192.168.6.99:9000'
-
-                            // Construct the URL to access the SonarQube task
-                            def taskURL = "${sonarURL}/api/ce/task?id=${sonarTaskId}"
-                            echo "SonarQube task URL: ${taskURL}"
-                        }
-                    }
+        stage("Quality gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
+        }
 
 
         /*stage('Build and Test') {
