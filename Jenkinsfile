@@ -9,12 +9,12 @@ pipeline {
                 SCANNER_HOME = tool 'SonarQubeScanner'
             }
             steps {
-                withSonarQubeEnv(credentialsId: 'SonarQubeScanner', installationName: 'SonarQubeScanner') {
+                withSonarQubeEnv(credentialsId: 'sonarcred', installationName: 'SonarQubeScanner') {
                     sh 'chmod +x gradlew'
                     sh './gradlew sonarqube \
-                        -Dsonar.projectKey=Sonarqube-QG \
+                        -Dsonar.projectKey=test \
                         -Dsonar.host.url=http://192.168.6.99:9000 \
-                        -Dsonar.login=975f2a453ca2eb6e5f4c970238db51e515e4cd87'
+                        -Dsonar.login=66deb091946f0ca486b6aef5e1992ea3ed2eca77'
                 } 
             } 
         } 
