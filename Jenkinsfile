@@ -9,7 +9,7 @@ pipeline {
                 SCANNER_HOME = tool 'sonartool'
             }
             steps {
-                withSonarQubeEnv(credentialsId: 'sonarcred', installationName: 'sonartool') {
+                withSonarQubeEnv(credentialsId: 'sonarcred', installationName: 'SonarQubeScanner') {
                     sh 'chmod +x gradlew'
                     sh './gradlew sonarqube \
                         -Dsonar.projectKey=test \
