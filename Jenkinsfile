@@ -6,10 +6,10 @@ pipeline {
     stages {
         stage('SonarQube-Code Coverage') {
             environment {
-                SCANNER_HOME = tool 'SonarQubeScanner'
+                SCANNER_HOME = tool 'sonartool'
             }
             steps {
-                withSonarQubeEnv(credentialsId: 'sonarcred', installationName: 'SonarQubeScanner') {
+                withSonarQubeEnv(credentialsId: 'sonarcred', installationName: 'sonartool') {
                     sh 'chmod +x gradlew'
                     sh './gradlew sonarqube \
                         -Dsonar.projectKey=test \
