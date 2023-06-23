@@ -22,7 +22,7 @@ pipeline {
 
 
 stage(“Quality Gate”){
-
+    script{
         timeout(time: 10, unit: ‘MINUTES’) {
               def qg= waitForQualityGate()
             if (qg.status!= ‘OK’){
@@ -32,6 +32,7 @@ stage(“Quality Gate”){
               echo ‘Quality Gate Passed’
 
     }
+}
 
     }
 }
